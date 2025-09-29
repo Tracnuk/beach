@@ -1,30 +1,29 @@
 using UnityEngine;
 
-public class GridManager : MonoBehaviour
+public class GridManager3D : MonoBehaviour
 {
-    public int width = 8;
-    public int height = 8;
+    public int width = 5;
+    public int height = 5;
+    public float cellSize = 1.5f;
     public GameObject cellPrefab;
 
     private Cell[,] grid;
 
-    void Start()
+    void Awake()
     {
         GenerateGrid();
     }
 
-    void GenerateGrid()
+    public void GenerateGrid()
     {
         grid = new Cell[width, height];
-
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
-                GameObject cellObj = Instantiate(cellPrefab, new Vector3(x, 0, y), Quaternion.identity);
-                cellObj.name = $"Cell {x},{y}";
-
-                Cell cell = cellObj.GetComponent<Cell>();
+                GameObject go = Instantiate(cellPrefab, transform);
+                go.transform.position = new Vector3(x * cellSize, 0, y * cellSize);
+                Cell cell = go.AddComponent<Cell>();
                 cell.x = x;
                 cell.y = y;
                 grid[x, y] = cell;
@@ -34,8 +33,7 @@ public class GridManager : MonoBehaviour
 
     public Cell GetCell(int x, int y)
     {
-        if (x < 0 || y < 0 || x >= width || y >= height)
-            return null;
+        if (x < 0 || y < 0 || x >= width || y >= height) return null;
         return grid[x, y];
     }
 }

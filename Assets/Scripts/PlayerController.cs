@@ -2,33 +2,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
     private Unit selectedUnit;
 
-    void Update()
+    private void Awake() => Instance = this;
+
+    public void SelectUnit(Unit unit)
     {
-        if (TurnManager.Instance.CurrentTurn != TurnManager.Turn.Player) return;
+        selectedUnit = unit;
+        Debug.Log("Селект: " + unit.name);
+    }
 
-        if (Input.GetMouseButtonDown(0))
+    public void TryMoveSelectedUnit(Cell targetCell)
+    {
+        if(selectedUnit != null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                Cell cell = hit.collider.GetComponent<Cell>();
-                if (cell == null) return;
-
-                if (cell.unit != null && !cell.unit.isEnemy)
-                {
-                    selectedUnit = cell.unit;
-                    Debug.Log($"Selected {selectedUnit.unitName}");
-                }
-                else if (selectedUnit != null && !cell.isOccupied)
-                {
-                    selectedUnit.MoveTo(cell);
-                    selectedUnit = null;
-
-                    TurnManager.Instance.EndPlayerTurn();
-                }
-            }
+            selectedUnit.MoveTo(targetCell);
         }
     }
 }

@@ -1,15 +1,30 @@
 using UnityEngine;
-using UnityEngine;
 
 public class Cell : MonoBehaviour
 {
     public int x, y;
-    public bool isOccupied;
+    public bool isOccupied = false;
     public Unit unit;
 
-    public void SetUnit(Unit newUnit)
+    // Методы выделения/снятия выделения
+    public void Select()
     {
-        unit = newUnit;
-        isOccupied = newUnit != null;
+        // подсветка
+        GetComponent<Renderer>().material.color = Color.yellow;
+    }
+
+    public void Deselect()
+    {
+        GetComponent<Renderer>().material.color = Color.white;
+    }
+
+    // Метод для клика по клетке
+    private void OnMouseDown()
+    {
+        if(!isOccupied)
+        {
+            // например, перемещение выбранного юнита
+            PlayerController.Instance.TryMoveSelectedUnit(this);
+        }
     }
 }

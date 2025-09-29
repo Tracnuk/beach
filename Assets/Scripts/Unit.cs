@@ -2,46 +2,35 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public string unitName;
-    public int hp = 10;
-    public int attackDamage = 2;
-    public bool isEnemy = false;
+    public Cell currentCell; // клетка, на которой стоит юнит
 
-    public Cell currentCell;
-
+    // Метод для установки на клетку
     public void Place(Cell cell)
     {
-        if (currentCell != null)
-            currentCell.SetUnit(null);
-
         currentCell = cell;
-        currentCell.SetUnit(this);
-        transform.position = cell.transform.position;
+        transform.position = cell.transform.position + Vector3.up * 0.5f; // смещение по высоте
+        cell.unit = this;
+        cell.isOccupied = true;
     }
 
+    // Метод для перемещения на другую клетку
     public void MoveTo(Cell targetCell)
     {
-        if (targetCell == null || targetCell.isOccupied) return;
+        if(targetCell == null || targetCell.isOccupied) return;
+
+        if(currentCell != null)
+        {
+            currentCell.unit = null;
+            currentCell.isOccupied = false;
+        }
+
         Place(targetCell);
     }
 
-    public void Attack(Unit target)
+    // Метод, вызываемый при клике на юнит
+    private void OnMouseDown()
     {
-        if (target == null) return;
-        target.TakeDamage(attackDamage);
-    }
-
-    public void TakeDamage(int amount)
-    {
-        hp -= amount;
-        if (hp <= 0) Die();
-    }
-
-    void Die()
-    {
-        if (currentCell != null)
-            currentCell.SetUnit(null);
-
-        Destroy(gameObject);
+        Debug.Log("Выбран юнит: " + name);
+        // Здесь можно вызвать селект юнита, показать действия и т.д.
     }
 }
