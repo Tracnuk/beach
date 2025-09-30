@@ -8,11 +8,6 @@ public class BaseTile : MonoBehaviour
     {
         this.position = position;
 
-        gameObject.name = String.Format("{0}:{1}", this.position.x, this.position.y);
-    }
-
-    private void FixedUpdate()
-    {
-        transform.position += new Vector3(0, Mathf.Sin(Time.time * 2 + ((float)position.x) / 8 + ((float)position.y) / 8)) / 200;
+        gameObject.name = String.Format("X{0} : Y{1}", this.position.x, this.position.y);
     }
 }

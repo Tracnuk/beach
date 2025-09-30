@@ -10,10 +10,13 @@ public class MapGridInspectorGUI : Editor
 
         DrawDefaultInspector();
 
+        GUILayout.Space(25f);
+
         if (GUILayout.Button("Generate Grid"))
         {
             mapGrid.GenerateGrid();
         }
+        GUILayout.Space(10f);
         if (GUILayout.Button("Clear Grid"))
         {
             mapGrid.ClearGrid();

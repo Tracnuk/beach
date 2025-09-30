@@ -4,17 +4,15 @@ using UnityEngine;
 public class MapGrid : MonoBehaviour
 {
     [SerializeField] private Vector2Int gridSize;
-    [SerializeField] private float tileSpacing;
+    [SerializeField, Range(0, 10)] private float tileSpacing;
     [SerializeField] private BaseTile prefab;
-    [SerializeField] private List<BaseTile> tiles;
+    [SerializeField, HideInInspector] private List<BaseTile> tiles;
 
     private void OnValidate()
     {
         gridSize = new((int)Mathf.Clamp(gridSize.x, 0, Mathf.Infinity), (int)Mathf.Clamp(gridSize.y, 0, Mathf.Infinity));
-        tileSpacing = Mathf.Clamp(tileSpacing, 0, Mathf.Infinity);
     }
 
-    [ContextMenu("Generate Grid")]
     public void GenerateGrid()
     {
         ClearGrid();
@@ -35,7 +33,6 @@ public class MapGrid : MonoBehaviour
         }
     }
 
-    [ContextMenu("Clear Grid")]
     public void ClearGrid()
     {
         foreach (BaseTile tile in tiles)
