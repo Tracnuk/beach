@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 332639861845064325}
   - component: {fileID: 2864565864617136948}
   - component: {fileID: 7089763657106339243}
-  - component: {fileID: 5249685823707716069}
+  - component: {fileID: 5657210971608277003}
   m_Layer: 0
   m_Name: GroundTile
   m_TagString: Untagged
@@ -109,7 +109,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0575705, y: 0.72392625, z: 2.0575705}
   m_Center: {x: 0, y: 0.001403898, z: 0}
---- !u!114 &5249685823707716069
+--- !u!114 &5657210971608277003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
