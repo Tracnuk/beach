@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3397245994647669063}
   - component: {fileID: 332639861845064325}
   - component: {fileID: 2864565864617136948}
-  - component: {fileID: -6716275958736781703}
   - component: {fileID: 7089763657106339243}
+  - component: {fileID: 5249685823707716069}
   m_Layer: 0
   m_Name: GroundTile
   m_TagString: Untagged
@@ -88,21 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-6716275958736781703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6713061929832982217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d305380733847b140ba4dca37874e810, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: 0, y: 0}
-  baseColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!65 &7089763657106339243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -124,3 +109,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0575705, y: 0.72392625, z: 2.0575705}
   m_Center: {x: 0, y: 0.001403898, z: 0}
+--- !u!114 &5249685823707716069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6713061929832982217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa8436e75fd2e54e9138e9326167de6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
