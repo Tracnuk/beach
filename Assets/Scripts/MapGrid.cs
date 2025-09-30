@@ -6,7 +6,7 @@ public class MapGrid : MonoBehaviour
     [SerializeField] private Vector2Int gridSize;
     [SerializeField, Range(0, 10)] private float tileSpacing;
     [SerializeField] private BaseTile prefab;
-    [SerializeField, HideInInspector] private List<BaseTile> tiles;
+    [SerializeField] private List<BaseTile> tiles;
 
     private void OnValidate()
     {
