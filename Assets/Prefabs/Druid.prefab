@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 9157796891707920532}
   - component: {fileID: 492340191435711190}
   - component: {fileID: 7836924659449613704}
-  - component: {fileID: 1007308553541541707}
+  - component: {fileID: -9100505682246879869}
   - component: {fileID: 914936402870718779}
-  m_Layer: 0
+  - component: {fileID: 9103812706869017859}
+  m_Layer: 3
   m_Name: Druid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2491443115014400581}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4013999, y: 1.0709947, z: -1.5227182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -88,7 +89,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1007308553541541707
+--- !u!114 &-9100505682246879869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,27 +98,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 2491443115014400581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20226d413d2b05449bf59756841b905c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f42ce625ef2df544a3181e4e4c4fc95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isObstacle: 0
   canBeDamaged: 0
   HP: 0
-  OnTurnStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTurnEnd:
-    m_PersistentCalls:
-      m_Calls: []
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
   OnDestroy:
     m_PersistentCalls:
       m_Calls: []
-  hierarchyName: Main Character
+  hierarchyName: Player
   occupiedTile: {fileID: 0}
   position: {x: 0, y: 0}
+  turnsLeft: 4
+  isSelected: 0
+  onSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  onDiselect:
+    m_PersistentCalls:
+      m_Calls: []
+  onMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &914936402870718779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +142,25 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!64 &9103812706869017859
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491443115014400581}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1203600554651575516, guid: 9eb24f951bf71994e9750204be8493c9, type: 3}

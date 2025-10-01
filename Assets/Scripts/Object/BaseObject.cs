@@ -3,17 +3,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [Serializable]
+[RequireComponent(typeof(Outline))]
 public class BaseObject : MonoBehaviour
 {
-
     [Header("Params")]
     public bool isObstacle;
     public bool canBeDamaged;
     public int HP;
 
     [Header("Events")]
-    public UnityEvent OnTurnStart = new();
-    public UnityEvent OnTurnEnd = new();
     public UnityEvent OnDamage = new();
     public UnityEvent OnDestroy = new();
 

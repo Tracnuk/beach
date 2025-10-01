@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -28,6 +29,20 @@ public class ObjectManager : MonoBehaviour
     public BaseObject GetInitializedObject(int x, int y)
     {
         return objects[y * mapSize.x + x];
+    }
+
+    public BaseObject GetInitializedObject(Vector2Int position)
+    {
+        return objects[position.y * mapSize.x + position.x];
+    }
+
+    public Vector3 GridToWorldPosition(int x, int y)
+    {
+        return transform.position+new Vector3((float)x * objectSize, 0, (float)y*objectSize);
+    }
+    public Vector3 GridToWorldPosition(Vector2Int position)
+    {
+        return transform.position + new Vector3((float)position.x * objectSize, 0, (float)position.y * objectSize);
     }
 
     public void SetObject(int x, int y, BaseObject _object)

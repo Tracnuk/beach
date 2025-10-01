@@ -9,10 +9,8 @@ public class BaseTile : MonoBehaviour
     public bool isWalkable;
 
     [Header("Events")]
-    public UnityEvent OnTurnStart;
-    public UnityEvent OnTurnEnd;
-    public UnityEvent OnTileEnter;
-    public UnityEvent OnTileExit;
+    public UnityEvent OnTileEnter = new();
+    public UnityEvent OnTileExit = new();
 
     [Header("Debug")]
     public string hierarchyName;
@@ -29,6 +27,18 @@ public class BaseTile : MonoBehaviour
         outline.enabled = false;
     }
 
+    public void EnterTile(BaseObject _object)
+    {
+        occupiedObject = _object;
+        OnTileEnter?.Invoke();
+    }
+
+    public void ExitTile()
+    {
+        occupiedObject = null;
+        OnTileExit?.Invoke();
+    }
+
     public void EnableOutline(Color color)
     {
         outline.color = color;
@@ -43,5 +53,14 @@ public class BaseTile : MonoBehaviour
     public void DisableOutline()
     {
         outline.enabled = false;
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is BaseTile other)
+        {
+            return position == other.position;
+        }
+        return false;
     }
 }
