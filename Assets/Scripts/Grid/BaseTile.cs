@@ -5,9 +5,6 @@ using UnityEngine.Events;
 [Serializable]
 public class BaseTile : MonoBehaviour
 {
-    [HideInInspector] public Vector2Int position;
-    [HideInInspector] public MapManager manager;
-
     [Header("Params")]
     public bool isWalkable;
 
@@ -18,6 +15,33 @@ public class BaseTile : MonoBehaviour
     public UnityEvent OnTileExit;
 
     [Header("Debug")]
-    public GameObject occupiedObject;
-    public bool isOccupied;
+    public string hierarchyName;
+    public BaseObject occupiedObject;
+    public bool isOccupied => occupiedObject != null;
+    
+    public Vector2Int position;
+
+    private SpriteRenderer outline;
+
+    private void Awake()
+    {
+        outline = GetComponentInChildren<SpriteRenderer>();
+        outline.enabled = false;
+    }
+
+    public void EnableOutline(Color color)
+    {
+        outline.color = color;
+        outline.enabled = true;
+    }
+
+    public void EnableOutline()
+    {
+        outline.enabled = true;
+    }
+
+    public void DisableOutline()
+    {
+        outline.enabled = false;
+    }
 }

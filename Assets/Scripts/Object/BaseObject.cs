@@ -5,8 +5,6 @@ using UnityEngine.Events;
 [Serializable]
 public class BaseObject : MonoBehaviour
 {
-    [HideInInspector] public Vector2Int position;
-    [HideInInspector] public ObjectManager manager;
 
     [Header("Params")]
     public bool isObstacle;
@@ -20,6 +18,31 @@ public class BaseObject : MonoBehaviour
     public UnityEvent OnDestroy = new();
 
     [Header("Debug")]
-    public GameObject occupiedObject;
-    public bool isOccupied;
+    public string hierarchyName;
+    public BaseTile occupiedTile;
+    public Vector2Int position;
+
+    private Outline outline;
+
+    private void Awake()
+    {
+        outline = GetComponent<Outline>();
+        outline.enabled = false;
+    }
+
+    public void EnableOutline(Color color)
+    {
+        outline.OutlineColor = color;
+        outline.enabled = true;
+    }
+
+    public void EnableOutline()
+    {
+        outline.enabled = true;
+    }
+
+    public void DisableOutline()
+    {
+        outline.enabled = false;
+    }
 }
