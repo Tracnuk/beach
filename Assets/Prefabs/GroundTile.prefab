@@ -130,7 +130,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4635765469530259275}
-  m_Mesh: {fileID: -5495902117074765545, guid: b5f3390700d11824baf9f9856195f2a8, type: 3}
+  m_Mesh: {fileID: -5495902117074765545, guid: 1af4b942d85a7d9419fbe56a37d49e43, type: 3}
 --- !u!23 &1832250945414109613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: b5f3390700d11824baf9f9856195f2a8, type: 3}
+  - {fileID: 2100000, guid: d4f37b1ae3ddafc4b88547589c357678, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -189,12 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isWalkable: 1
-  OnTurnStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTurnEnd:
-    m_PersistentCalls:
-      m_Calls: []
   OnTileEnter:
     m_PersistentCalls:
       m_Calls: []
