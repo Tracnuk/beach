@@ -23,20 +23,23 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("clicked");
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(ray.origin, ray.direction);
             if (!player)
             {
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit, 100f, playerMask))
+                if (Physics.Raycast(ray, out RaycastHit hit, 10000f, playerMask))
                 {
+                    Debug.Log("player chosen");
                     player = hit.collider.gameObject.GetComponent<PlayerObject>();
                     player.Select();
                 }
             }
             else
             {
-;               Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit, 100f, groundMask))
+                if (Physics.Raycast(ray, out RaycastHit hit, 10000f, groundMask))
                 {
+                    Debug.Log("tile chosen");
                     BaseTile tile = hit.collider.gameObject.GetComponent<BaseTile>();
                     player.Move(tile);
                 }

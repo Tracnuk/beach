@@ -30,7 +30,7 @@ public class PlayerObject : BaseObject
         gameObject.name = $"{hierarchyName} at {tilePosition.x}:{tilePosition.y}";
 
         position = tilePosition;
-        Vector3 newPosition = ObjectManager.Instance.GridToWorldPosition(tilePosition);
+        Vector3 newPosition = ObjectManager.instance.GridToWorldPosition(tilePosition);
         transform.LookAt(newPosition);
         transform.position = newPosition;
         turnsLeft--;
@@ -62,7 +62,7 @@ public class PlayerObject : BaseObject
     {
         tilesAround = new List<BaseTile>() { };
         occupiedTile.EnableOutline(Color.blue);
-        foreach (BaseTile tile in MapManager.Instance.GetTilesAround(position))
+        foreach (BaseTile tile in MapManager.instance.Get4TilesAround(position))
         {
             if (tile.isWalkable && !tile.isOccupied) { tilesAround.Add(tile); tile.EnableOutline((turnsLeft > 0) ? Color.green : Color.red); };
         }

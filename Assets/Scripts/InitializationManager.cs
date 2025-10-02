@@ -4,7 +4,7 @@ public class InitializationManager : MonoBehaviour
 {
     private void Start()
     {
-        MapManager.Instance.Initialize();
-        ObjectManager.Instance.Initialize();
+        MapManager.instance.Initialize();
+        ObjectManager.instance.Initialize();
     }
 }

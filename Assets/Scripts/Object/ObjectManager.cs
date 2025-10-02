@@ -8,17 +8,17 @@ public class ObjectManager : MonoBehaviour
 
     [SerializeField] private BaseObject[] objectsFlat;
     public BaseObject[] objects;
-    [HideInInspector] public static ObjectManager Instance { get; private set; }
+    [HideInInspector] public static ObjectManager instance { get; private set; }
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            Instance = this;
+            instance = this;
         }
     }
     public BaseObject GetObject(int x, int y)
@@ -69,9 +69,9 @@ public class ObjectManager : MonoBehaviour
                 initializedBaseObject.position = new Vector2Int(x, y);
                 _object.name = $"{initializedBaseObject.hierarchyName} at {x}:{y}";
 
-                if (MapManager.Instance.GetInitializedTile(x, y) != null)
+                if (MapManager.instance.GetInitializedTile(x, y) != null)
                 {
-                    BaseTile tile = MapManager.Instance.GetInitializedTile(x, y);
+                    BaseTile tile = MapManager.instance.GetInitializedTile(x, y);
                     initializedBaseObject.occupiedTile = tile;
                     tile.occupiedObject = initializedBaseObject;
                 }

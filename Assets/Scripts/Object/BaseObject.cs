@@ -14,6 +14,8 @@ public class BaseObject : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnDamage = new();
     public UnityEvent OnDestroy = new();
+    public UnityEvent OnTurnEnd = new();
+    public UnityEvent OnTurnStart = new();
 
     [Header("Debug")]
     public string hierarchyName;
@@ -42,5 +44,34 @@ public class BaseObject : MonoBehaviour
     public void DisableOutline()
     {
         outline.enabled = false;
+    }
+    public void Damage(int dmg) {
+        OnDamage.Invoke();
+
+        HP -= dmg;
+
+        if (HP <= 0) {
+            HP = 0;
+            Destroy();
+        }
+    }
+    public void Destroy() { 
+        OnDestroy.Invoke();
+        Destroy(gameObject);
+    }
+    public void TurnEnd()
+    {
+        OnTurnEnd.Invoke();
+    }
+    public void TurnStart() { 
+        OnTurnStart.Invoke();
+    }
+
+    public virtual void Update() { 
+        if (Input.GetMouseButtonDown(1))
+        {
+            OnTurnEnd.Invoke();
+            OnTurnStart.Invoke();
+        }
     }
 }

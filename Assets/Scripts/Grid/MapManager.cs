@@ -10,17 +10,17 @@ public class MapManager : MonoBehaviour
     [SerializeField] private BaseTile[] tilesFlat;
     public BaseTile[] tiles;
 
-    [HideInInspector] public static MapManager Instance { get; private set; }
+    [HideInInspector] public static MapManager instance { get; private set; }
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            Instance = this;
+            instance = this;
         }
     }
 
@@ -60,8 +60,24 @@ public class MapManager : MonoBehaviour
             tiles[i].DisableOutline();
         }
     }
+    public List<BaseTile> Get8TilesAround(Vector2Int position)
+    {
+        int x = position.x;
+        int y = position.y;
 
-    public List<BaseTile> GetTilesAround(int x, int y)
+        List<BaseTile> tilesAround = new List<BaseTile> { };
+        if (GetInitializedTile(x - 1, y)) tilesAround.Add(GetInitializedTile(x - 1, y));
+        if (GetInitializedTile(x + 1, y)) tilesAround.Add(GetInitializedTile(x + 1, y));
+        if (GetInitializedTile(x, y - 1)) tilesAround.Add(GetInitializedTile(x, y - 1));
+        if (GetInitializedTile(x, y + 1)) tilesAround.Add(GetInitializedTile(x, y + 1));
+
+        if (GetInitializedTile(x - 1, y - 1)) tilesAround.Add(GetInitializedTile(x - 1, y - 1));
+        if (GetInitializedTile(x + 1, y - 1)) tilesAround.Add(GetInitializedTile(x + 1, y - 1));
+        if (GetInitializedTile(x + 1, y + 1)) tilesAround.Add(GetInitializedTile(x + 1, y + 1));
+        if (GetInitializedTile(x - 1, y + 1)) tilesAround.Add(GetInitializedTile(x - 1, y + 1));
+        return tilesAround;
+    }
+    public List<BaseTile> Get4TilesAround(int x, int y)
     {
         List<BaseTile> tilesAround = new List<BaseTile> { };
         if (GetInitializedTile(x - 1, y)) tilesAround.Add(GetInitializedTile(x - 1, y));
@@ -70,7 +86,7 @@ public class MapManager : MonoBehaviour
         if (GetInitializedTile(x, y + 1)) tilesAround.Add(GetInitializedTile(x, y + 1));
         return tilesAround;
     }
-    public List<BaseTile> GetTilesAround(Vector2Int position)
+    public List<BaseTile> Get4TilesAround(Vector2Int position)
     {
         List<BaseTile> tilesAround = new List<BaseTile> { };
         if (GetInitializedTile(position.x - 1, position.y)) tilesAround.Add(GetInitializedTile(position.x - 1, position.y));
