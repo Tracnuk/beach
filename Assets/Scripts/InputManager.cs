@@ -15,49 +15,26 @@ public class InputManager : MonoBehaviour
 
     [Header("Debug")]
     [SerializeField] private PlayerObject player;
+    public static InputManager instance;
+
 
     private void Awake()
     {
         camera = Camera.main;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
-    private void EndTurn() {
-        UnityEvent empty = new UnityEvent();
-        foreach (BaseTile tile in MapManager.instance.tiles)
-        {
-            //
-        }
 
-
-        foreach (BaseObject obj in ObjectManager.instance.objects)
-        {
-            if(obj == null) continue;
-            if(obj.OnTurnEnd.Equals(empty))continue;
-            obj.TurnEnd();
-            //Thread.Sleep(200);
-        }
-        
-    }
-    private void StartTurn()
-    {
-        UnityEvent empty = new UnityEvent();
-        foreach (BaseTile tile in MapManager.instance.tiles)
-        {
-            //
-        }
-
-
-        foreach (BaseObject obj in ObjectManager.instance.objects)
-        {
-            if (obj == null) continue;
-            if (obj.OnTurnStart.Equals(empty)) continue;
-            obj.TurnStart();
-            //Thread.Sleep(200);
-        }
-
-    }
 
     private void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("clicked");
@@ -91,15 +68,5 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("ending turn");
-            EndTurn();
-            Debug.Log("ended turn");
-            //Thread.Sleep(1000);
-            Debug.Log("starting turn");
-            StartTurn();
-            Debug.Log("started turn");
-        }
     }
 }

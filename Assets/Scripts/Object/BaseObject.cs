@@ -11,6 +11,7 @@ public class BaseObject : MonoBehaviour
     public bool isObstacle;
     public bool canBeDamaged;
     public int HP;
+    public float startDelay = 0.2f, endDelay = 0.2f;
 
     [Header("Events")]
     public UnityEvent OnDamage = new();
@@ -60,12 +61,16 @@ public class BaseObject : MonoBehaviour
         OnDestroy.Invoke();
         Destroy(gameObject);
     }
-    public void TurnEnd()
+    public float TurnEnd()
     {
+        Debug.Log(gameObject.name + " ended turn");
         OnTurnEnd.Invoke();
+        return endDelay;
     }
-    public void TurnStart() { 
+    public float TurnStart() {
+        Debug.Log(gameObject.name + " started turn");
         OnTurnStart.Invoke();
+        return startDelay;
     }
     public virtual void Move(BaseTile tile)
     {

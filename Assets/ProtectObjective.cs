@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProtectObjective : BaseObject
 {
-    public int turnsLeft = 3, damage = 1, score = 1;
+    public int turnsLeft = 3, damage = 5, score = 1;
 
     public void Start()
     {
@@ -47,7 +47,7 @@ public class ProtectObjective : BaseObject
         if (turnsLeft == 1) {
             BaseTile[] tiles = MapManager.instance.Get4TilesAround(position).ToArray();
             foreach (BaseTile tile in tiles) { 
-                tile.EnableOutline(Color.red);
+                tile.EnableOutline(Color.black);
             }
         }
     }
