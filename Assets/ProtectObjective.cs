@@ -9,6 +9,15 @@ public class ProtectObjective : BaseObject
         OnTurnEnd.AddListener(TickDown);
         OnTurnStart.AddListener(TryComplete);
         OnTurnStart.AddListener(TryIndicateDamage);
+        OnDestroy.AddListener(DeHighlight);
+    }
+    public void DeHighlight()
+    {
+        BaseTile[] tiles = MapManager.instance.Get4TilesAround(position).ToArray();
+        foreach (BaseTile tile in tiles)
+        {
+            tile.DisableOutline();
+        }
     }
     public void TickDown() { 
         //on end

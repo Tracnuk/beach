@@ -13,19 +13,22 @@ public class LeaperEnemy : BaseObject
         OnTurnStart.AddListener(PrepareAttack);
     }
     public BaseTile FindClosesttarget() {
-        BaseTile ans = MapManager.instance.GetInitializedTile(position); 
-        
+        BaseTile init = MapManager.instance.GetInitializedTile(position);
+
+        bool[,] used = new bool[MapManager.instance.mapSize.x, MapManager.instance.mapSize.y];
         Queue<BaseTile> q = new Queue<BaseTile>();
         q.Clear();
-        q.Enqueue(ans);
+        q.Enqueue(init);
         //int depth = 0, depthCounter = 1;
         while (q.Count > 0) {
             BaseTile cur = q.Dequeue();
+            used[cur.position.x, cur.position.y] = true;
 
             BaseTile[] tiles = MapManager.instance.Get4TilesAround(cur.position).ToArray();
             foreach (BaseTile tile in tiles) {
+                if(used[tile.position.x, tile.position.y]) continue;
                 q.Enqueue(tile);
-                if (cur.isOccupied || !cur.isWalkable) continue;
+                if ((cur.isOccupied || !cur.isWalkable)) continue;
 
                 if (tile.isOccupied) {
                     if (tile.occupiedObject.CompareTag("EnemyTarget")) { 
@@ -40,7 +43,7 @@ public class LeaperEnemy : BaseObject
             }
         }
 
-        return MapManager.instance.GetInitializedTile(position);
+        return init;
     }
     public void PrepareAttack() { 
         //on start
@@ -50,6 +53,7 @@ public class LeaperEnemy : BaseObject
 
         
         BaseTile[] tiles = MapManager.instance.Get4TilesAround(position).ToArray();
+        bool ok = false;
         foreach (BaseTile tile in tiles)
         {
             if (tile.isOccupied)
@@ -57,13 +61,17 @@ public class LeaperEnemy : BaseObject
                 if (tile.occupiedObject.CompareTag("EnemyTarget"))
                 {
                     target = tile;
+                    ok = true;
                     break;
                 }
             }
         }
-        
-        LookAt(target);
-        target.EnableOutline(Color.red);
+        if (!ok) target = null;
+        else
+        {
+            LookAt(target);
+            target.EnableOutline(Color.red);
+        }
     }
 
     public void Attack() { 
