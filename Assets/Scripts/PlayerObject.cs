@@ -15,7 +15,7 @@ public class PlayerObject : BaseObject
 
     private List<BaseTile> tilesAround;
 
-    public void Move(BaseTile tile)
+    public override void Move(BaseTile tile)
     {
         if (turnsLeft <= 0 || tile.isOccupied || !tilesAround.Contains(tile) || !tile.isWalkable) return;
 

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -66,12 +67,26 @@ public class BaseObject : MonoBehaviour
     public void TurnStart() { 
         OnTurnStart.Invoke();
     }
+    public virtual void Move(BaseTile tile)
+    {
+        if (tile.isOccupied || !tile.isWalkable) return;
 
-    public virtual void Update() { 
-        if (Input.GetMouseButtonDown(1))
-        {
-            OnTurnEnd.Invoke();
-            OnTurnStart.Invoke();
-        }
+        Vector2Int tilePosition = tile.position;
+
+        occupiedTile.ExitTile();
+        occupiedTile = tile;
+        occupiedTile.EnterTile(this);
+
+        gameObject.name = $"{hierarchyName} at {tilePosition.x}:{tilePosition.y}";
+
+        position = tilePosition;
+        Vector3 newPosition = ObjectManager.instance.GridToWorldPosition(tilePosition);
+        transform.position = newPosition;
     }
+    public void LookAt(BaseTile tile) {
+        Vector3 newPosition = ObjectManager.instance.GridToWorldPosition(tile.position);
+        transform.LookAt(newPosition);
+    }
+
+    
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 390676796159371153}
   m_Layer: 0
   m_Name: objective
-  m_TagString: Untagged
+  m_TagString: EnemyTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,8 +140,9 @@ MonoBehaviour:
   hierarchyName: objective
   occupiedTile: {fileID: 0}
   position: {x: 0, y: 0}
-  turnsLeft: 3
+  turnsLeft: 6
   damage: 1
+  score: 1
 --- !u!114 &390676796159371153
 MonoBehaviour:
   m_ObjectHideFlags: 0

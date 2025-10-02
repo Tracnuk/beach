@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class InputManager : MonoBehaviour
@@ -17,6 +19,41 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         camera = Camera.main;
+    }
+    private void EndTurn() {
+        UnityEvent empty = new UnityEvent();
+        foreach (BaseTile tile in MapManager.instance.tiles)
+        {
+            //
+        }
+
+
+        foreach (BaseObject obj in ObjectManager.instance.objects)
+        {
+            if(obj == null) continue;
+            if(obj.OnTurnEnd.Equals(empty))continue;
+            obj.TurnEnd();
+            //Thread.Sleep(200);
+        }
+        
+    }
+    private void StartTurn()
+    {
+        UnityEvent empty = new UnityEvent();
+        foreach (BaseTile tile in MapManager.instance.tiles)
+        {
+            //
+        }
+
+
+        foreach (BaseObject obj in ObjectManager.instance.objects)
+        {
+            if (obj == null) continue;
+            if (obj.OnTurnStart.Equals(empty)) continue;
+            obj.TurnStart();
+            //Thread.Sleep(200);
+        }
+
     }
 
     private void Update()
@@ -52,6 +89,17 @@ public class InputManager : MonoBehaviour
                 player.Diselect();
                 player = null;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("ending turn");
+            EndTurn();
+            Debug.Log("ended turn");
+            //Thread.Sleep(1000);
+            Debug.Log("starting turn");
+            StartTurn();
+            Debug.Log("started turn");
         }
     }
 }
